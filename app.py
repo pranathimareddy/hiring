@@ -42,13 +42,20 @@ def generate_questions(tech_stack):
         return "⚠️ Error generating questions. Please try again."
 
 # Multilingual Support
+from langdetect import detect, DetectorFactory
+
+# Ensuring consistent language detection
+DetectorFactory.seed = 0  
+
 def detect_language(text):
     try:
         lang = detect(text)
+        # Force default to English if detected language seems incorrect
+        if lang not in ["en", "fr", "es", "de"]:  # Allow only common languages
+            return "en"
         return lang
     except:
-        return "en"  # Default to English
-
+        return "en"  # Default to English in case of error
 # Sentiment Analysis (Basic Simulation)
 def analyze_sentiment(message):
     positive_words = ["good", "excellent", "awesome", "love", "like", "positive", "great"]
