@@ -110,3 +110,5 @@ if st.button("Generate Technical Questions"):
 # End conversation button
 if st.button("End Conversation"):
     st.write("🙏 Thank you for using TalentScout! We'll get back to you soon.")
+import os
+print("Hugging Face API Key:", os.getenv("HUGGINGFACE_API_KEY"))
